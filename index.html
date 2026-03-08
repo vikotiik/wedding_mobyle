@@ -11,7 +11,14 @@ margin:0;
 font-family:'Marck Script',cursive;
 color:white;
 scroll-behavior:smooth;
+
+/* ONE global background for parallax */
+background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
+
 section{
 min-height:100vh;
 display:flex;
@@ -22,107 +29,367 @@ text-align:center;
 padding:90px 20px;
 position:relative;
 overflow:hidden;
-background:linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
-section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);pointer-events:none;z-index:1;}
-h1{font-family:"Great Vibes";font-size:92px;margin:0;letter-spacing:3px;animation:fadeUp 2s ease;color:#fff;text-shadow:0 0 12px rgba(255,255,255,0.7);}
-h2{font-size:44px;font-weight:400;margin-bottom:30px;color:#fff;text-shadow:0 0 8px rgba(255,255,255,0.6);}
-p{max-width:720px;line-height:1.8;font-size:24px;z-index:2;}
-.hero, .dress, .place, .end, .timeline{background-size:cover; background-position:center; background-attachment:fixed;}
-.map{width:90%;max-width:700px;height:350px;border-radius:14px;overflow:hidden;margin-top:20px;box-shadow:0 10px 30px rgba(0,0,0,.4);}
-.countdown{margin-top:30px;font-size:28px;letter-spacing:2px;}
-.route-btn{margin-top:15px;padding:12px 26px;border:1px solid white;background:transparent;color:white;cursor:pointer;font-size:18px;font-family:'Marck Script';transition:.3s;}
-.route-btn:hover{background:white;color:black;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-.petal{position:fixed;top:-40px;pointer-events:none;width:18px;height:18px;background:url("https://upload.wikimedia.org/wikipedia/commons/3/36/Rose_petal_icon.png") no-repeat center/contain;animation:fall linear forwards;}
-@keyframes fall{0%{transform:translateY(-40px) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
-.timeline-wrapper{position:relative;width:90%;max-width:600px;margin-top:40px;display:flex;flex-direction:column;align-items:center;z-index:2;}
-.timeline-wrapper::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:4px;height:100%;background:gold;z-index:1;}
-.timeline-item{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;margin:60px 0;opacity:0;transition:1s;}
-.timeline-item.visible{opacity:1;}
-.timeline-dot{width:14px;height:14px;border-radius:50%;background:white;z-index:2;}
-.timeline-content{margin-top:12px;font-size:22px;max-width:180px;text-align:center;z-index:2;}
-.qr-section{margin-top:40px;text-align:center;z-index:2;}
-.qr-section img{width:200px;height:200px;margin-top:20px;}
+
+/* veil for readability */
+section::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+z-index:0;
+}
+
+section>*{position:relative;z-index:1}
+
+h1{
+font-family:"Great Vibes";
+font-size:92px;
+margin:0;
+letter-spacing:3px;
+color:#fff;
+text-shadow:0 0 14px rgba(255,255,255,0.8);
+animation:fadeUp 2s ease;
+}
+
+h2{
+font-size:44px;
+font-weight:400;
+margin-bottom:30px;
+color:#fff;
+text-shadow:0 0 10px rgba(255,255,255,0.7);
+}
+
+p{
+max-width:720px;
+line-height:1.8;
+font-size:24px;
+}
+
+.map{
+width:90%;
+max-width:700px;
+height:350px;
+border-radius:14px;
+overflow:hidden;
+margin-top:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.countdown{
+margin-top:30px;
+font-size:28px;
+letter-spacing:2px;
+}
+
+.route-btn{
+margin-top:15px;
+padding:12px 26px;
+border:1px solid white;
+background:transparent;
+color:white;
+cursor:pointer;
+font-size:18px;
+font-family:'Marck Script';
+transition:.3s;
+}
+
+.route-btn:hover{
+background:white;
+color:black;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* petals */
+.petal{
+position:fixed;
+top:-40px;
+pointer-events:none;
+width:18px;
+height:18px;
+background:url("https://upload.wikimedia.org/wikipedia/commons/3/36/Rose_petal_icon.png") no-repeat center/contain;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-40px) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* timeline */
+.timeline-wrapper{
+position:relative;
+width:90%;
+max-width:600px;
+margin-top:40px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.timeline-wrapper::before{
+content:"";
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+top:0;
+width:4px;
+height:100%;
+background:gold;
+}
+
+.timeline-item{
+position:relative;
+margin:60px 0;
+text-align:center;
+opacity:0;
+transition:1s;
+}
+
+.timeline-item.visible{opacity:1}
+
+.timeline-dot{
+width:14px;
+height:14px;
+border-radius:50%;
+background:white;
+margin:0 auto;
+}
+
+.timeline-content{
+margin-top:10px;
+font-size:22px;
+}
+
+.qr-section img{
+width:200px;
+height:200px;
+margin-top:20px;
+}
+
+/* mobile fix */
 @media (max-width:768px){
-.hero, .dress, .place, .end, .timeline{background-attachment:scroll;}
-.timeline-wrapper::before{left:50%;}
-.timeline-item{margin:40px 0;}
+body{background-attachment:scroll}
+h1{font-size:64px}
+h2{font-size:34px}
+p{font-size:20px}
 }
+
+/* golden glow animation for timeline */
+.timeline-wrapper::before{
+background:linear-gradient(180deg,#caa64b,#fff1a8,#caa64b);
+background-size:200% 200%;
+animation:goldMove 6s linear infinite;
+}
+
+@keyframes goldMove{
+0%{background-position:0% 0%}
+100%{background-position:0% 200%}
+}
+
+/* section reveal animation */
+section{
+opacity:0;
+transform:translateY(40px);
+transition:opacity 1.2s ease, transform 1.2s ease;
+}
+
+section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* light glints */
+.glow{
+position:fixed;
+width:120px;
+height:120px;
+border-radius:50%;
+pointer-events:none;
+background:radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,255,255,0));
+animation:floatGlow 18s linear infinite;
+}
+
+@keyframes floatGlow{
+0%{transform:translate(-10vw,10vh)}
+50%{transform:translate(110vw,40vh)}
+100%{transform:translate(-10vw,80vh)}
+}
+
 </style>
 </head>
+
 <body>
+
 <section class="hero">
 <h1>Александр & Виктория</h1>
 <p>Мы будем счастливы разделить с вами этот важный день нашей жизни!</p>
 <p>10 мая 2026</p>
 <div class="countdown" id="countdown"></div>
 </section>
-<section class="timeline" id="timeline">
+
+<section class="timeline">
 <h2>Таймлайн дня</h2>
-<div class="timeline-wrapper" id="timeline-wrapper">
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">19:00–19:20<br>Сбор в ЗАГСе</div></div>
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">19:40<br>Торжественная роспись</div></div>
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">20:30<br>Выезд на площадку</div></div>
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">21:00<br>Начало праздника</div></div>
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">00:00<br>Торт</div></div>
-<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content">01:00<br>Финал</div></div>
+
+<div class="timeline-wrapper">
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">19:00–19:20<br>Сбор в ЗАГСе</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">19:40<br>Торжественная роспись</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">20:30<br>Выезд на площадку</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">21:00<br>Начало праздника</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">00:00<br>Торт</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-content">01:00<br>Финал</div>
+</div>
+
 </div>
 </section>
-<section class="dress">
-<h2>Дресс-код</h2>
+
+<section>
+<h2>Дресс‑код</h2>
 <p>Дорогие гости, дресс-код есть только у жениха и невесты! Будем рады видеть вас в том, в чем душе угодно и что не нарушает нынешних законов ;)</p>
 </section>
-<section class="place">
+
+<section>
 <h2>Место сбора</h2>
 <p>Дворец бракосочетания №2<br>ул. Фурштатская, 52</p>
 <button class="route-btn" onclick="window.open('https://maps.google.com/?q=Фурштатская 52 Санкт-Петербург')">Построить маршрут</button>
-<div class="map"><iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Фурштатская%2052%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe></div>
+
+<div class="map">
+<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Фурштатская%2052%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
 <h2 style="margin-top:70px">Площадка праздника</h2>
 <p>Лофт Агава<br>Арсенальная ул., 2</p>
 <button class="route-btn" onclick="window.open('https://maps.google.com/?q=Арсенальная 2 Санкт-Петербург')">Построить маршрут</button>
-<div class="map"><iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Арсенальная%202%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe></div>
-</section>
-<section class="end">
-<h2>Подтверждение</h2>
-<p>Просим подтвердить своё присутствие, написав нам лично.</p>
-<p style="margin-top:40px">Наши любимые, мы просим не дарить нам цветы! Вместо них, по возможности, возьмите с собой ваш любимый алкогольный напиток! И вы будете наслаждаться, и мы сэкономим ;)</p>
-<p style="margin-top:40px">С любовью,<br>Александр и Виктория</p>
-<div class="qr-section">
-<p>QR-код ведет на чат в тг, где в день мероприятия будет производиться координация и оповещение об изменениях 🫶</p>
-<img src="https://api.qrserver.com/v1/create-qr-code/?data=tg://join?invite=k7__ikLlcWw4NmM6&size=200x200" alt="QR-код">
+
+<div class="map">
+<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Арсенальная%202%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
 </div>
 </section>
+
+<section>
+<h2>Подтверждение</h2>
+<p>Просим подтвердить своё присутствие, написав нам лично.</p>
+
+<p style="margin-top:40px">
+Наши любимые, мы просим не дарить нам цветы! Вместо них, по возможности, возьмите с собой ваш любимый алкогольный напиток! И вы будете наслаждаться, и мы сэкономим ;)
+</p>
+
+<p style="margin-top:40px">С любовью,<br>Александр и Виктория</p>
+
+<div class="qr-section">
+<p>
+QR-код ведет на чат в тг, где в день мероприятия будет производиться координация и оповещение об изменениях 🫶
+</p>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?data=tg://join?invite=k7__ikLlcWw4NmM6&size=200x200">
+</div>
+</section>
+
 <script>
 const date=new Date("May 10, 2026 19:00:00").getTime()
+
 setInterval(()=>{
 let now=new Date().getTime()
 let diff=date-now
+
 let d=Math.floor(diff/(1000*60*60*24))
 let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60))
 let m=Math.floor((diff%(1000*60*60))/(1000*60))
+
 let el=document.getElementById("countdown")
 if(el) el.innerHTML=`До свадьбы: ${d}д ${h}ч ${m}м`
+
 },1000)
+
 function createPetal(){
 let petal=document.createElement("div")
 petal.className="petal"
 petal.style.left=Math.random()*100+"vw"
 petal.style.animationDuration=(7+Math.random()*5)+"s"
 petal.style.opacity=Math.random()
+
 document.body.appendChild(petal)
+
 setTimeout(()=>petal.remove(),12000)
 }
+
 setInterval(createPetal,350)
+
 const timelineItems=document.querySelectorAll(".timeline-item")
+
 function revealTimeline(){
-timelineItems.forEach((item,i)=>{
-let rect=item.getBoundingClientRect()
-if(rect.top<window.innerHeight*0.85){item.classList.add("visible")}
-})
+
+ timelineItems.forEach(item=>{
+
+  let rect=item.getBoundingClientRect()
+
+  if(rect.top<window.innerHeight*0.85)
+   item.classList.add("visible")
+
+ })
+
 }
+
 window.addEventListener("scroll",revealTimeline)
 revealTimeline()
+
+
+
+/* section reveal on scroll */
+const sections=document.querySelectorAll("section")
+
+function revealSections(){
+ sections.forEach(sec=>{
+  const rect=sec.getBoundingClientRect()
+  if(rect.top < window.innerHeight*0.85)
+   sec.classList.add("visible")
+ })
+}
+
+window.addEventListener("scroll",revealSections)
+revealSections()
+
+/* light glints generator */
+function createGlow(){
+ const g=document.createElement("div")
+ g.className="glow"
+ g.style.top=Math.random()*100+"vh"
+ g.style.left="-150px"
+ g.style.animationDuration=(15+Math.random()*10)+"s"
+ document.body.appendChild(g)
+ setTimeout(()=>g.remove(),25000)
+}
+
+setInterval(createGlow,4000)
+
 </script>
+
 </body>
 </html>
