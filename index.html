@@ -173,7 +173,19 @@ margin-top:20px;
 
 /* mobile fix */
 @media (max-width:768px){
-body{background-attachment:scroll}
+body{
+background-attachment:scroll;
+/* reduce zoom of background on phones */
+background-size:100% auto;
+background-position:center top;
+}
+
+h1{font-size:56px}
+h2{font-size:32px}
+p{font-size:20px}
+
+.timeline-item{margin:40px 0}
+}
 h1{font-size:64px}
 h2{font-size:34px}
 p{font-size:20px}
