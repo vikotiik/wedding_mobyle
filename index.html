@@ -13,7 +13,7 @@ color:white;
 scroll-behavior:smooth;
 
 /* ONE global background for parallax */
-background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80');
+background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=2000&q=80');
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -174,10 +174,17 @@ margin-top:20px;
 /* mobile fix */
 @media (max-width:768px){
 body{
+background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80');
+background-size:cover;
+background-position:center;
 background-attachment:scroll;
-/* reduce zoom of background on phones */
-background-size:100% auto;
-background-position:center top;
+}
+
+h1{font-size:56px}
+h2{font-size:32px}
+p{font-size:20px}
+
+.timeline-item{margin:40px 0}
 }
 
 h1{font-size:56px}
