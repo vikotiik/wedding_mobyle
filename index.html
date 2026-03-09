@@ -3,23 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Александр и Виктория — 10 мая 2026</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marck+Script&display=swap" rel="stylesheet">
+
 <style>
+
 body{
+
 margin:0;
 font-family:'Marck Script',cursive;
 color:white;
-scroll-behavior:smooth;
 
-/* ONE global background for parallax */
-background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=2000&q=80');
+background:
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+url("https://img.freepik.com/free-photo/full-frame-green-leaves-background_23-2148058904.jpg?semt=ais_related_payload_trends&w=740&q=80");
+
 background-size:cover;
-background-position:center;
 background-attachment:fixed;
+
 }
 
 section{
+
 min-height:100vh;
 display:flex;
 flex-direction:column;
@@ -28,215 +35,151 @@ justify-content:center;
 text-align:center;
 padding:90px 20px;
 position:relative;
-overflow:hidden;
-}
 
-/* veil for readability */
-section::before{
-content:'';
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.45);
-z-index:0;
 }
-
-section>*{position:relative;z-index:1}
 
 h1{
+
 font-family:"Great Vibes";
 font-size:92px;
 margin:0;
-letter-spacing:3px;
-color:#fff;
-text-shadow:0 0 14px rgba(255,255,255,0.8);
-animation:fadeUp 2s ease;
+
 }
 
 h2{
-font-size:44px;
-font-weight:400;
+
+font-size:52px;
 margin-bottom:30px;
-color:#fff;
-text-shadow:0 0 10px rgba(255,255,255,0.7);
+position:relative;
+
 }
 
 p{
+
 max-width:720px;
-line-height:1.8;
 font-size:24px;
+line-height:1.8;
+
 }
 
-.map{
-width:90%;
-max-width:700px;
-height:350px;
-border-radius:14px;
-overflow:hidden;
-margin-top:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
+/* бабочки */
 
-.countdown{
-margin-top:30px;
+.butterfly{
+
+position:absolute;
 font-size:28px;
-letter-spacing:2px;
+animation:fly 6s ease-in-out infinite;
+
 }
 
-.route-btn{
-margin-top:15px;
-padding:12px 26px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-font-size:18px;
-font-family:'Marck Script';
-transition:.3s;
+@keyframes fly{
+
+0%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-15px) rotate(10deg)}
+100%{transform:translateY(0) rotate(0deg)}
+
 }
 
-.route-btn:hover{
-background:white;
-color:black;
-}
+/* ---------- таймлайн ---------- */
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-/* petals */
-.petal{
-position:fixed;
-top:-40px;
-pointer-events:none;
-width:18px;
-height:18px;
-background:url("https://upload.wikimedia.org/wikipedia/commons/3/36/Rose_petal_icon.png") no-repeat center/contain;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-0%{transform:translateY(-40px) rotate(0deg)}
-100%{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* timeline */
 .timeline-wrapper{
+
 position:relative;
 width:90%;
-max-width:600px;
+max-width:700px;
 margin-top:40px;
-display:flex;
-flex-direction:column;
-align-items:center;
+
 }
 
+/* линия */
+
 .timeline-wrapper::before{
+
 content:"";
+position:absolute;
+
+left:50%;
+top:0;
+
+width:6px;
+height:100%;
+
+background:rgb(121,134,75);
+transform:translateX(-50%);
+border-radius:10px;
+
+}
+
+/* блик */
+
+.timeline-shine{
+
 position:absolute;
 left:50%;
 transform:translateX(-50%);
-top:0;
-width:4px;
-height:100%;
-background:gold;
+
+width:6px;
+height:140px;
+
+background:linear-gradient(
+transparent,
+rgba(255,255,255,.9),
+transparent
+);
+
+filter:blur(1px);
+pointer-events:none;
+
 }
+
+/* элементы */
 
 .timeline-item{
-position:relative;
+
+display:grid;
+grid-template-columns:1fr 80px 1fr;
+align-items:center;
+
 margin:60px 0;
-text-align:center;
-opacity:0;
-transition:1s;
-}
 
-.timeline-item.visible{opacity:1}
-
-.timeline-dot{
-width:14px;
-height:14px;
-border-radius:50%;
-background:white;
-margin:0 auto;
-}
-
-.timeline-content{
-margin-top:10px;
-font-size:22px;
-}
-
-.qr-section img{
-width:200px;
-height:200px;
-margin-top:20px;
-}
-
-/* mobile fix */
-@media (max-width:768px){
-body{
-background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80');
-background-size:cover;
-background-position:center;
-background-attachment:scroll;
-}
-
-h1{font-size:56px}
-h2{font-size:32px}
-p{font-size:20px}
-
-.timeline-item{margin:40px 0}
-}
-
-h1{font-size:56px}
-h2{font-size:32px}
-p{font-size:20px}
-
-.timeline-item{margin:40px 0}
-}
-h1{font-size:64px}
-h2{font-size:34px}
-p{font-size:20px}
-}
-
-/* golden glow animation for timeline */
-.timeline-wrapper::before{
-background:linear-gradient(180deg,#caa64b,#fff1a8,#caa64b);
-background-size:200% 200%;
-animation:goldMove 6s linear infinite;
-}
-
-@keyframes goldMove{
-0%{background-position:0% 0%}
-100%{background-position:0% 200%}
-}
-
-/* section reveal animation */
-section{
 opacity:0;
 transform:translateY(40px);
-transition:opacity 1.2s ease, transform 1.2s ease;
+transition:1s;
+
 }
 
-section.visible{
+.timeline-item.visible{
+
 opacity:1;
 transform:translateY(0);
+
 }
 
-/* light glints */
-.glow{
-position:fixed;
-width:120px;
-height:120px;
-border-radius:50%;
-pointer-events:none;
-background:radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,255,255,0));
-animation:floatGlow 18s linear infinite;
+.timeline-time{
+
+text-align:right;
+font-size:26px;
+padding-right:20px;
+
 }
 
-@keyframes floatGlow{
-0%{transform:translate(-10vw,10vh)}
-50%{transform:translate(110vw,40vh)}
-100%{transform:translate(-10vw,80vh)}
+.timeline-text{
+
+text-align:left;
+font-size:26px;
+padding-left:20px;
+
+}
+
+/* листочек */
+
+.timeline-leaf{
+
+font-size:26px;
+display:flex;
+align-items:center;
+justify-content:center;
+
 }
 
 </style>
@@ -244,169 +187,153 @@ animation:floatGlow 18s linear infinite;
 
 <body>
 
-<section class="hero">
+<section>
+
 <h1>Александр & Виктория</h1>
+
 <p>Мы будем счастливы разделить с вами этот важный день нашей жизни!</p>
+
 <p>10 мая 2026</p>
-<div class="countdown" id="countdown"></div>
+
 </section>
 
-<section class="timeline">
-<h2>Таймлайн дня</h2>
+<section>
+
+<h2>
+Таймлайн дня
+<span class="butterfly" style="left:65%;top:-10px;">🦋</span>
+<span class="butterfly" style="left:30%;top:10px;animation-delay:2s;">🦋</span>
+</h2>
 
 <div class="timeline-wrapper">
 
+<div class="timeline-shine" id="shine"></div>
+
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">19:00–19:20<br>Сбор в ЗАГСе</div>
+<div class="timeline-time">19:00–19:20</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Сбор в ЗАГСе</div>
 </div>
 
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">19:40<br>Торжественная роспись</div>
+<div class="timeline-time">19:40</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Торжественная роспись</div>
 </div>
 
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">20:30<br>Выезд на площадку</div>
+<div class="timeline-time">20:30</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Выезд на площадку</div>
 </div>
 
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">21:00<br>Начало праздника</div>
+<div class="timeline-time">21:00</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Начало праздника</div>
 </div>
 
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">00:00<br>Торт</div>
+<div class="timeline-time">00:00</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Торт</div>
 </div>
 
 <div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-content">01:00<br>Финал</div>
+<div class="timeline-time">01:00</div>
+<div class="timeline-leaf">🍃</div>
+<div class="timeline-text">Финал</div>
 </div>
 
 </div>
+
 </section>
 
 <section>
-<h2>Дресс‑код</h2>
-<p>Дорогие гости, дресс-код есть только у жениха и невесты! Будем рады видеть вас в том, в чем душе угодно и что не нарушает нынешних законов ;)</p>
+
+<h2>
+Дресс-код
+<span class="butterfly" style="left:55%;top:-10px;">🦋</span>
+</h2>
+
+<p>
+Дорогие гости, дресс-код есть только у жениха и невесты!
+Будем рады видеть вас в том, в чем душе угодно и что не нарушает нынешних законов ;)
+</p>
+
 </section>
 
 <section>
-<h2>Место сбора</h2>
+
+<h2>
+Место сбора
+<span class="butterfly" style="left:40%;top:-10px;">🦋</span>
+</h2>
+
 <p>Дворец бракосочетания №2<br>ул. Фурштатская, 52</p>
-<button class="route-btn" onclick="window.open('https://maps.google.com/?q=Фурштатская 52 Санкт-Петербург')">Построить маршрут</button>
 
-<div class="map">
-<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Фурштатская%2052%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-</div>
-
-<h2 style="margin-top:70px">Площадка праздника</h2>
-<p>Лофт Агава<br>Арсенальная ул., 2</p>
-<button class="route-btn" onclick="window.open('https://maps.google.com/?q=Арсенальная 2 Санкт-Петербург')">Построить маршрут</button>
-
-<div class="map">
-<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Арсенальная%202%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-</div>
 </section>
 
 <section>
-<h2>Подтверждение</h2>
+
+<h2>
+Подтверждение
+<span class="butterfly" style="left:60%;top:-10px;">🦋</span>
+</h2>
+
 <p>Просим подтвердить своё присутствие, написав нам лично.</p>
 
 <p style="margin-top:40px">
-Наши любимые, мы просим не дарить нам цветы! Вместо них, по возможности, возьмите с собой ваш любимый алкогольный напиток! И вы будете наслаждаться, и мы сэкономим ;)
+Наши любимые, мы просим не дарить нам цветы!
+Вместо них, по возможности, возьмите с собой ваш любимый алкогольный напиток.
 </p>
 
-<p style="margin-top:40px">С любовью,<br>Александр и Виктория</p>
-
-<div class="qr-section">
-<p>
-QR-код ведет на чат в тг, где в день мероприятия будет производиться координация и оповещение об изменениях 🫶
+<p style="margin-top:40px">
+С любовью<br>
+Александр и Виктория
 </p>
 
-<img src="https://api.qrserver.com/v1/create-qr-code/?data=tg://join?invite=k7__ikLlcWw4NmM6&size=200x200">
-</div>
 </section>
 
 <script>
-const date=new Date("May 10, 2026 19:00:00").getTime()
 
-setInterval(()=>{
-let now=new Date().getTime()
-let diff=date-now
+/* появление таймлайна */
 
-let d=Math.floor(diff/(1000*60*60*24))
-let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60))
-let m=Math.floor((diff%(1000*60*60))/(1000*60))
+const items=document.querySelectorAll(".timeline-item")
 
-let el=document.getElementById("countdown")
-if(el) el.innerHTML=`До свадьбы: ${d}д ${h}ч ${m}м`
+function reveal(){
 
-},1000)
+items.forEach(el=>{
 
-function createPetal(){
-let petal=document.createElement("div")
-petal.className="petal"
-petal.style.left=Math.random()*100+"vw"
-petal.style.animationDuration=(7+Math.random()*5)+"s"
-petal.style.opacity=Math.random()
+let rect=el.getBoundingClientRect()
 
-document.body.appendChild(petal)
+if(rect.top<window.innerHeight*0.85){
 
-setTimeout(()=>petal.remove(),12000)
-}
-
-setInterval(createPetal,350)
-
-const timelineItems=document.querySelectorAll(".timeline-item")
-
-function revealTimeline(){
-
- timelineItems.forEach(item=>{
-
-  let rect=item.getBoundingClientRect()
-
-  if(rect.top<window.innerHeight*0.85)
-   item.classList.add("visible")
-
- })
+el.classList.add("visible")
 
 }
 
-window.addEventListener("scroll",revealTimeline)
-revealTimeline()
+})
 
-
-
-/* section reveal on scroll */
-const sections=document.querySelectorAll("section")
-
-function revealSections(){
- sections.forEach(sec=>{
-  const rect=sec.getBoundingClientRect()
-  if(rect.top < window.innerHeight*0.85)
-   sec.classList.add("visible")
- })
 }
 
-window.addEventListener("scroll",revealSections)
-revealSections()
+window.addEventListener("scroll",reveal)
 
-/* light glints generator */
-function createGlow(){
- const g=document.createElement("div")
- g.className="glow"
- g.style.top=Math.random()*100+"vh"
- g.style.left="-150px"
- g.style.animationDuration=(15+Math.random()*10)+"s"
- document.body.appendChild(g)
- setTimeout(()=>g.remove(),25000)
-}
+reveal()
 
-setInterval(createGlow,4000)
+/* движение блика */
+
+const shine=document.getElementById("shine")
+
+window.addEventListener("scroll",()=>{
+
+let h=document.body.scrollHeight-window.innerHeight
+
+let sc=window.scrollY/h
+
+shine.style.top=(sc*100)+"%"
+
+})
 
 </script>
 
